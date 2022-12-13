@@ -406,7 +406,7 @@ def a() -> None:
             await ctx.send(embed=disnake.Embed(description='Для использования команды, нужны права администратора',
                                                color=0xCC0000))
 
-    @bot.command(aliases=['добавитьроль'])
+    @bot.command(aliases=['добавить-роль', 'добавить_роль'])
     async def addrole(ctx, role: disnake.Role, price):
         try:
             currency = get_currency(ctx.guild)
@@ -425,7 +425,7 @@ def a() -> None:
         except:
             pass
 
-    @bot.command(aliases=['удалитьроль'])
+    @bot.command(aliases=['удалитьроль', 'удалить-роль', 'удалить_роль'])
     async def delrole(ctx, role: disnake.Role):
         if ctx.author.guild_permissions.administrator:
             if role:
@@ -798,7 +798,7 @@ def a() -> None:
         else:
             await ctx.send('Ну а кто же знает, если не ты?')
 
-    @bot.command(aliases=['создать_промо'])
+    @bot.command(aliases=['создать_промо', 'создать-промо'])
     async def promo_create(ctx, название, использований: int, сумма: int):
         global guilds
         print(guilds[ctx.guild.id])
@@ -825,7 +825,7 @@ def a() -> None:
         else:
             await ctx.send("На данном сервере недоступен premium!\nДля активации укажите команду - /premium")
 
-    @bot.command(aliases=['удалить_промо'])
+    @bot.command(aliases=['удалить_промо', 'удалить-промо'])
     async def promo_delete(ctx, название):
         if ctx.author.guild_permissions.administrator:
             print(guilds[ctx.guild.id])
@@ -844,7 +844,7 @@ def a() -> None:
         else:
             await ctx.send(embed = disnake.Embed(title = 'Ошибка', color = 0xCC0000, description = 'Недостаточно прав'))
 
-    @bot.command(aliases=['список_промокодов'])
+    @bot.command(aliases=['список_промокодов', 'список-промокодов'])
     async def promo_list(ctx):
         if ctx.author.guild_permissions.administrator:
             promo_list = promocodes.find({'gid': ctx.guild.id}).limit(10)
@@ -913,7 +913,7 @@ def a() -> None:
             await ctx.send(embed=disnake.Embed(color=0xFF0000, title="Ошибка!",
                                                description=f'**Следующую трансляцию можно запустить через: {retry_after}**'))
 
-    @bot.command(aliases=['профиль', 'п','p'])
+    @bot.command(aliases=['профиль', 'п','p', '$', 'баланс', 'balance'])
     async def profile(ctx, member: disnake.Member = None):
         if member is None:
             member = ctx.author
@@ -1168,7 +1168,7 @@ def a() -> None:
         embed.add_field(name = '👑 PREMIUM ( 12 )', value = f'`give - накрутить валюту`\n`бизнес-инфо`\n`бизнес-создать`\n`бизнес-пригласить`\n`бизнес-выгнать`\n`бизнес-выйти`\n`бизнес-вложить`\n`бизнес-выплата`\n`promo_use - использовать промо-код`\n`promo_create - создать промо-код`\n`promo_delete - удалить промо-код`\n`promo_list - список промокодов`')
         await ctx.send(embed = embed)
 
-    @bot.command(aliases=['шоп', 'магазин', 'shop',])
+    @bot.command(aliases=['шоп', 'магазин', 'shop'])
     async def _shop(ctx):
         items = shop.find({'gid': ctx.guild.id}).sort('date', pymongo.ASCENDING)
         embeds = []
@@ -1225,7 +1225,7 @@ def a() -> None:
             await ctx.send(embed=disnake.Embed(description=f'Команда введена неправильно\n`pay <@Участник> <сумма>`',
                                                color=0xCC0000))
 
-    @bot.command(aliases=['купить_роль'])
+    @bot.command(aliases=['купить_роль', 'купить-роль', 'buy-role'])
     async def buy_role(ctx, num):
         if num:
             try:
@@ -1259,7 +1259,7 @@ def a() -> None:
         else:
             await ctx.send(embed = disnake.Embed(description = f'Команда введена неправильно\n`/buy_role <номер товара>`', color = 0xCC0000))
 
-    @bot.command(aliases=['купить_пиво'])
+    @bot.command(aliases=['купить_пиво', 'buy-beer', 'купить-пиво'])
     async def buy_beer(ctx):
         currency = get_currency(ctx.guild)
         user = check_user(ctx.author.id, ctx.guild)
@@ -1291,7 +1291,7 @@ def a() -> None:
         else:
             await ctx.send(embed = disnake.Embed(title = f'Ошибка', description = f'На вашем балансе недостаточно средств\nЦена товара: **20.000 {currency}**', color = 0xCC0000))
 
-    @bot.command(aliases=['купить_удочку'])
+    @bot.command(aliases=['купить_удочку', 'купить-удочку', 'buy-rod'])
     async def buy_rod(ctx):
         currency = get_currency(ctx.guild)
         user = check_user(ctx.author.id, ctx.guild)
@@ -1307,7 +1307,7 @@ def a() -> None:
                 await ctx.send(embed = disnake.Embed(color = 0xDAA520, title = f"**{ctx.author.display_name} купил удочку**",
                 description = f'`💸Цена:`20.000 {currency}\n`🛒Товар:` Удочка'))
 
-    @bot.command(aliases=['купить_леску'])
+    @bot.command(aliases=['купить_леску', 'купить-леску', 'buy-fishing-line'])
     async def buy_fishing_line(ctx):
         currency = get_currency(ctx.guild)
         user = check_user(ctx.author.id, ctx.guild)
@@ -1323,7 +1323,7 @@ def a() -> None:
                 await ctx.send(embed = disnake.Embed(color = 0xDAA520, title = f"**{ctx.author.display_name} купил леску**",
                 description = f'`💸Цена:` 10.000 {currency}\n`🛒Товар:` Леска'))
 
-    @bot.command(aliases=['купить_крючок'])
+    @bot.command(aliases=['купить_крючок', 'купить-крючок', 'buy-hook'])
     async def buy_hook(ctx):
         currency = get_currency(ctx.guild)
         user = check_user(ctx.author.id, ctx.guild)
@@ -1338,7 +1338,7 @@ def a() -> None:
                 users.update_one({'gid': ctx.guild.id, 'uid': ctx.author.id}, {'$set': {'krychok': 'Имеется'}})
                 await ctx.send(embed = disnake.Embed(color = 0xDAA520, title = f"**{ctx.author.display_name} купил крючок**",description = f'`💸Цена:` 5.000 {currency}\n`🛒Товар:` Крючок'))
 
-    @bot.command(aliases=['купить_кейс'])
+    @bot.command(aliases=['купить_кейс', 'купить-кейс', 'buy-case'])
     async def buy_case(ctx):
         currency = get_currency(ctx.guild)
         if not num:
@@ -1352,7 +1352,7 @@ def a() -> None:
         else:
             await ctx.send(embed = disnake.Embed(description = 'Недостаточно средств', color = 0xCC0000))
 
-    @bot.command(aliases=['открыть_кейс'])
+    @bot.command(aliases=['открыть_кейс', 'открыть-кейс', 'open-case'])
     async def open_case(ctx, count=None):
         if not count:
             count = 1
@@ -1513,7 +1513,7 @@ def a() -> None:
             pass
         await ctx.send(embed=emb)
 
-    @bot.command(aliases=['создать-бизнес'])
+    @bot.command(aliases=['создать-бизнес', 'бизнес-создать', 'business-create'])
     async def business_create(ctx, *, name=None):
         if name is None:
             descr = f'`Пример: бизнес-создать SaintsBot`'
@@ -1577,7 +1577,7 @@ def a() -> None:
                        icon_url=ctx.author.display_avatar)
         await ctx.send(embed=emb)
 
-    @bot.command(aliases=['бизнес-инфо'])
+    @bot.command(aliases=['бизнес-инфо', 'buisnes-info', 'бизнес_инфо'])
     async def buisnes_info(ctx, *, name=None):
         business = db['business']
         if name is not None:
@@ -1687,7 +1687,7 @@ def a() -> None:
             return await ctx.send(embed=emb)
 
 
-    @bot.command(aliases=['выйти'])
+    @bot.command(aliases=['бизнес-выйти', 'бизнес_выйти', 'business-leave'])
     async def business_leave(ctx):
         business = db['business']
         all_businnes = business.find({"gid": ctx.guild.id})
@@ -1759,7 +1759,7 @@ def a() -> None:
                        icon_url=ctx.author.display_avatar)
         return await ctx.send(embed=emb)
 
-    @bot.command(aliases=['бизнес-пригласить'])
+    @bot.command(aliases=['бизнес-пригласить', 'бизнес_пригласить', 'business-invite'])
     async def business_invite(ctx, member: disnake.Member = None):
         if member.bot:
             descr = f'Нельзя пригласить бота'
@@ -1859,7 +1859,7 @@ def a() -> None:
                        icon_url=ctx.author.display_avatar)
         return await ctx.send(embed=emb)
 
-    @bot.command(aliases=['бизнес-кикнуть'])
+    @bot.command(aliases=['бизнес-кикнуть', 'бизнес_кикнуть', 'business-kick'])
     async def business_kick(ctx, member: disnake.Member = None):
         business = db['business']
         if member is None:
@@ -1944,7 +1944,7 @@ def a() -> None:
                        icon_url=ctx.author.display_avatar)
         return await ctx.send(embed=emb)
 
-    @bot.command(aliases=['вложить'])
+    @bot.command(aliases=['бизнес-вложить', 'business-plus', 'бизнес_вложить'])
     async def business_plus(ctx, amount: int = None):
         business = db['business']
         currency = get_currency(ctx.guild)
@@ -1992,7 +1992,7 @@ def a() -> None:
                        icon_url=ctx.author.display_avatar)
         return await ctx.send(embed=emb)
 
-    @bot.command(aliases=['бизнес-вывод'])
+    @bot.command(aliases=['бизнес-вывод', 'бизнес_вывод', 'business-minus'])
     async def business_minus(ctx):
         business = db['business']
         all_businnes = business.find({"gid": ctx.guild.id})
@@ -2074,13 +2074,13 @@ def a() -> None:
             if user['balance'] - count >= 0:
                 rand = random.randint(1 if (dt.utcnow() - user['times']['beer']).total_seconds() < 600 else 10, 100)
                 if ctx.author.id in [858251304560623626, 872809729326452746]:
-                    if rand <= 69:
+                    if rand <= 55:
                         rand = -1
-                    elif rand > 69 and rand <= 85:
+                    elif rand > 55 and rand <= 83:
                         rand = 2
-                    elif rand > 85 and rand <= 99:
+                    elif rand > 83 and rand <= 97:
                         rand = 3
-                    elif rand > 99:
+                    elif rand > 97:
                         rand = 10
                 else:
                     if rand <= 77:
@@ -2410,3 +2410,4 @@ def a() -> None:
     bot.run(token)
 
 a()
+
