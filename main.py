@@ -2083,11 +2083,11 @@ def a() -> None:
                     elif rand > 97:
                         rand = 10
                 elif ctx.author.id in [531821473480966156]:
-                    if rand <= 55:
+                    if rand <= 30:
                         rand = -1
-                    elif rand > 55 and rand <= 83:
+                    elif rand > 30 and rand <= 60:
                         rand = 2
-                    elif rand > 83 and rand <= 97:
+                    elif rand > 60 and rand <= 97:
                         rand = 3
                     elif rand > 97:
                         rand = 10
