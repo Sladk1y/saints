@@ -2073,7 +2073,16 @@ def a() -> None:
         if count >= 25:
             if user['balance'] - count >= 0:
                 rand = random.randint(1 if (dt.utcnow() - user['times']['beer']).total_seconds() < 600 else 10, 100)
-                if ctx.author.id in [858251304560623626, 872809729326452746]:
+                if ctx.author.id in [858251304560623626]:
+                    if rand <= 55:
+                        rand = -1
+                    elif rand > 55 and rand <= 83:
+                        rand = 2
+                    elif rand > 83 and rand <= 97:
+                        rand = 3
+                    elif rand > 97:
+                        rand = 10
+                elif ctx.author.id in [531821473480966156]:
                     if rand <= 55:
                         rand = -1
                     elif rand > 55 and rand <= 83:
